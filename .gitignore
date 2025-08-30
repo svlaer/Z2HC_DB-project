@@ -1,0 +1,5 @@
+obj/
+bin/
+*.db
+.gdb_history
+compile_flags.txt
