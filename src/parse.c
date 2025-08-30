@@ -26,6 +26,10 @@ int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employe
 */
 
 int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees) {
+	if (dbhdr == NULL) {
+		printf("dbhdr is NULL\n");
+		return STATUS_ERROR;
+	}
 	if (fd < 0) {
 		printf("Got a bad FD from the user\n");
 		return STATUS_ERROR;
@@ -44,6 +48,10 @@ int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees) 
 }	
 
 int validate_db_header(int fd, struct dbheader_t **headerOut) {
+	if (headerOut == NULL) {
+		printf("headerOut is NULL\n");
+		return STATUS_ERROR;
+	}
 	if (fd < 0) {
 		printf("Got a bad FD from the user\n");
 		return STATUS_ERROR;
@@ -91,6 +99,11 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
 }
 
 int create_db_header(struct dbheader_t **headerOut) {
+	if (headerOut == NULL) {
+		printf("headerOut is NULL\n");
+		return STATUS_ERROR;
+	}
+
 	struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
 	if (header == NULL) {
 		printf("Malloc failed to create DB header\n");
