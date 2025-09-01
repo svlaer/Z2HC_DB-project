@@ -22,6 +22,10 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *
 		printf("dbhdr is NULL\n");
 		return STATUS_ERROR;
 	}
+	if (employees == NULL) {
+		printf("employees is NULL\n");
+		return STATUS_ERROR;
+	}
 
 	printf("%s\n", addstring);
 
