@@ -18,6 +18,15 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
 */
 
 int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
+	if (dbhdr == NULL) {
+		printf("dbhdr is NULL\n");
+		return STATUS_ERROR;
+	}
+	if (employees == NULL) {
+		printf("employees is NULL\n");
+		return STATUS_ERROR;
+	}
+
 	printf("%s\n", addstring);
 
 	char *name = strtok(addstring, ",");
@@ -67,6 +76,10 @@ int read_employees(int fd, struct dbheader_t *dbhdr, struct employee_t **employe
 int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employees) {
 	if (dbhdr == NULL) {
 		printf("dbhdr is NULL\n");
+		return STATUS_ERROR;
+	}
+	if (employees == NULL) {
+		printf("employees is NULL\n");
 		return STATUS_ERROR;
 	}
 	if (fd < 0) {
