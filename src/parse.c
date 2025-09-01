@@ -17,13 +17,9 @@ void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
 }
 */
 
-int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *addstring) {
+int add_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *addstring) {
 	if (dbhdr == NULL) {
 		printf("dbhdr is NULL\n");
-		return STATUS_ERROR;
-	}
-	if (employees == NULL) {
-		printf("employees is NULL\n");
 		return STATUS_ERROR;
 	}
 
@@ -37,9 +33,13 @@ int add_employee(struct dbheader_t *dbhdr, struct employee_t *employees, char *a
 
 	printf("%s %s %s\n", name, addr, hours);
 
-	strncpy(employees[dbhdr->count-1].name, name, sizeof(employees[dbhdr->count-1].name));
-	strncpy(employees[dbhdr->count-1].address, addr, sizeof(employees[dbhdr->count-1].address));
-	employees[dbhdr->count-1].hours = atoi(hours);
+	
+	dbhdr->count++;
+	*employees = realloc(*employees, dbhdr->count * sizeof(struct employee_t));
+
+	strncpy((*employees)[dbhdr->count-1].name, name, sizeof((*employees)[dbhdr->count-1].name));
+	strncpy((*employees)[dbhdr->count-1].address, addr, sizeof((*employees)[dbhdr->count-1].address));
+	(*employees)[dbhdr->count-1].hours = atoi(hours);
 
 	return STATUS_SUCCESS;
 }
