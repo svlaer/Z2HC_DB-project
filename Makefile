@@ -6,8 +6,7 @@ BUILD_DIRS = obj bin
 .PHONY: run
 run: clean default
 	./$(TARGET) -f ./mynewdb.db -n 
-	./$(TARGET) -f ./mynewdb.db
-	# ./$(TARGET) -f ./mynewdb.db -a "Timmy H.,123 Sheshire Ln.,120"
+	./$(TARGET) -f ./mynewdb.db -a "Timmy H.,123 Sheshire Ln.,120"
 
 .PHONY: default
 default: $(BUILD_DIRS) $(TARGET)
